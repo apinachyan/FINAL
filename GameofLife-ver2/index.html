@@ -1,0 +1,53 @@
+<html>
+   <head>
+      <script src="socket.io/socket.io.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+      <script src="script.js"></script>
+      <style>
+         body{
+            display:flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content:space-around;
+         }
+         canvas{
+            display:block;
+            margin:20px 0 0 0;
+         }
+         .row{
+            display:flex;
+            justify-content:space-around;
+            margin:20px 0 0 0;
+         }
+         .stats{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:space-around;
+            margin:20px 0 0 0;
+         }
+         .row button{
+            margin:0 10px 0 10px;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>Game of life</h1>
+      <h3>Weather:</h3>
+      <h4 id = 'weather'></h4>
+      <div class="row">
+         <button onclick="call_water()">Water flows</button>
+         <button onclick="restart_gam()">Restart</button>
+         <button onclick="call_grass_eater()">Add Grass Eater</button>
+         <button onclick="call_human()">Add Human</button>
+         <button onclick="call_wild_an()">Add Wild Animal</button>
+         <button onclick="call_airplane()">Add Airplane</button>
+      </div>
+      <div class="stats">
+         <p id = "grasslength">Grass Length:</p>
+         <p id = "grassEaterlength">GrassEater Length:</p>
+         <p id = "humanlen">Human Length:</p>
+         <p id = "animalen">Wild Animal Length:</p>
+      </div>
+   </body>
+</html>
