@@ -82,6 +82,11 @@ module.exports = class Human extends LivingCreature{
 
     }
 
+choose_nextfield(ch,x_pos,y_pos){
+        this.directions = [];
+        this.directions[0] = [x_pos,y_pos];
+        return this.chooseCell(ch);
+}
 runaway (){
     var y = this.y;
     var x = this.x;
@@ -96,7 +101,7 @@ runaway (){
                 }
         }
         for (let i = 0; i < arr.length; i++){
-                if (this.x > arr[i][0] && this.x < matrix.length - 1){
+                if (this.x > arr[i][0] && this.x < matrix[0].length){
                     x = x + 1;
                 }
                 else if (this.x < arr[i][0] && this.x > 0){
@@ -104,7 +109,33 @@ runaway (){
                 }  
         }
     }
-    matrix[this.y][this.x] = 0;
+    var arr1 = this.choose_nextfield(1,x,y)
+    var arr2 = this.choose_nextfield(2,x,y)
+    var arr3 = this.choose_nextfield(3,x,y)
+    var arr4 = this.choose_nextfield(4,x,y)
+    var arr5 = this.choose_nextfield(5,x,y)
+    var arr6 = this.choose_nextfield(6,x,y)
+    if(arr1.length > 0){
+        matrix[this.y][this.x] = 1; 
+    }
+    else if(arr2.length > 0){
+        matrix[this.y][this.x] = 2; 
+    }
+    else if(arr3.length > 0){
+        matrix[this.y][this.x] = 3; 
+    }
+    else if(arr4.length > 0){
+        matrix[this.y][this.x] = 4; 
+    }
+    else if(arr5.length > 0){
+        matrix[this.y][this.x] = 5; 
+    }
+    else if(arr6.length > 0){
+        matrix[this.y][this.x] = 6; 
+    }
+    else{
+        matrix[this.y][this.x] = 0; 
+    }
     matrix[y][x] = 6;
     this.x = x;
     this.y = y;

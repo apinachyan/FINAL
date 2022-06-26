@@ -44,6 +44,7 @@ module.exports = class Water extends LivingCreature{
         this.removing(4,PlaneArr);
         this.removing(5,bombArr);
         this.removing(6,HumanArr);
+        this.removing(8,rocketArr);
         for (var i = 0;i < this.len;i++){
             matrix[this.start][i] = 7;
         }

@@ -147,7 +147,6 @@ function add_airplane(){
 }
 function add_rocket(){
     var rocket_obj = new Rocket();
-    console.log("ROCKET ACTIVATED");
 }
 function game(){
     for (var i in grassArr){

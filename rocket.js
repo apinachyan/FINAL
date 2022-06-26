@@ -28,21 +28,21 @@ module.exports = class Rocket extends LivingCreature{
                 }
             }
         }
-        else if (this.x == matrix[0].length - 1 && this.y == 0){
+        else if (this.x == (matrix[0].length - 1) && this.y == 0){
             for (var i = 0;i < matrix.length / 2;i++){
                 for (var j = matrix[0].length - 1;j >= matrix[0].length / 2;j--){
                     this.directions.push([j,i]);
                 }
             }
         }
-        else if (this.x == 0 && this.y == matrix.length - 1){
+        else if (this.x == 0 && this.y == (matrix.length - 1)){
             for (var i = matrix.length - 1;i >= matrix.length / 2;i--){
                 for (var j = 0;j < matrix[0].length / 2; j++){
                     this.directions.push([j,i]);
                 }
             }
         }
-        else if (this.x == matrix[0].length - 1 && this.y == matrix.length - 1){
+        else if (this.x == (matrix[0].length - 1) && this.y == (matrix.length - 1)){
             for (var i = matrix.length - 1;i >= matrix.length / 2;i--){
                 for (var j = matrix[0].length - 1;j >= matrix[0].length / 2;j--){
                     this.directions.push([j,i]);
@@ -56,6 +56,8 @@ module.exports = class Rocket extends LivingCreature{
             [this.x + 2,this.y - 2],
             [this.x - 1,this.y - 1],
             [this.x + 1,this.y - 1],
+            [this.x - 1,this.y],
+            [this.x + 1,this.y],
             [this.x - 1,this.y + 1],
             [this.x + 1,this.y + 1],
             [this.x - 2,this.y + 2],
@@ -84,14 +86,14 @@ module.exports = class Rocket extends LivingCreature{
         var arr_plane = this.chooseCell(4);
         var arr_animal = this.chooseCell(3);
         var arr_human = this.chooseCell(6);
-        if (arr_plane > 0){
+        if (arr_plane.length > 0){
             var min_distance = arr_plane[0][0] + arr_plane[0][1];
-            for (var obj in arr_plane){
-                var distance = obj[0] + obj[1];
+            for (var i in arr_plane){
+                var distance = arr_plane[i][0] + arr_plane[i][1];
                 if (min_distance > distance){
                     min_distance = distance;
-                    this.goalx = obj[0];
-                    this.goaly = obj[1];
+                    this.goalx = arr_plane[i][0];
+                    this.goaly = arr_plane[i][1];
                 }
             }
             for (var i = 0;i < PlaneArr.length;i++) {
@@ -101,14 +103,14 @@ module.exports = class Rocket extends LivingCreature{
             }
             this.find_airplane = true;
         }
-        else if (arr_human > 0){
+        else if (arr_human.length > 0){
             var min_distance = arr_human[0][0] + arr_human[0][1];
-            for (var obj in arr_human){
-                var distance = obj[0] + obj[1];
+            for (var i in arr_human){
+                var distance = arr_human[i][0] + arr_human[i][1];
                 if (min_distance > distance){
                     min_distance = distance;
-                    this.goalx = obj[0];
-                    this.goaly = obj[1];
+                    this.goalx = arr_human[i][0];
+                    this.goaly = arr_human[i][1];
                 }
             }
             for (var i = 0;i < HumanArr.length;i++) {
@@ -117,14 +119,14 @@ module.exports = class Rocket extends LivingCreature{
                 }
             }
         }
-        else if (arr_animal > 0){
+        else if (arr_animal.length > 0){
             var min_distance = arr_animal[0][0] + arr_animal[0][1];
-            for (var obj in arr_animal){
-                var distance = obj[0] + obj[1];
+            for (var i in arr_animal){
+                var distance = arr_animal[i][0] + arr_animal[i][1];
                 if (min_distance > distance){
                     min_distance = distance;
-                    this.goalx = obj[0];
-                    this.goaly = obj[1];
+                    this.goalx = arr_animal[i][0];
+                    this.goaly = arr_animal[i][1];
                 }
             }
             for (var i = 0;i < WildAnimalArr.length;i++) {
@@ -155,7 +157,7 @@ module.exports = class Rocket extends LivingCreature{
         }
         else{
             if(HumanArr.length > 0){
-                var object = HumanArr[this.airplane_pos];
+                var object = HumanArr[this.human_pos];
                 this.goalx = object.x;
                 this.goaly = object.y; 
             }
@@ -188,7 +190,6 @@ module.exports = class Rocket extends LivingCreature{
             var arr2 = this.choose_nextfieldx(2,'plus')
             var arr3 = this.choose_nextfieldx(3,'plus')
             var arr4 = this.choose_nextfieldx(4,'plus')
-            var arr5 = this.choose_nextfieldx(5,'plus')
             var arr6 = this.choose_nextfieldx(6,'plus')
 
             if(arr1.length > 0){
@@ -202,9 +203,6 @@ module.exports = class Rocket extends LivingCreature{
             }
             else if(arr4.length > 0){
                 matrix[this.y][this.x] = 4; 
-            }
-            else if(arr5.length > 0){
-                matrix[this.y][this.x] = 5; 
             }
             else if(arr6.length > 0){
                 matrix[this.y][this.x] = 6; 
@@ -220,7 +218,6 @@ module.exports = class Rocket extends LivingCreature{
             var arr2 = this.choose_nextfieldx(2,'minus')
             var arr3 = this.choose_nextfieldx(3,'minus')
             var arr4 = this.choose_nextfieldx(4,'minus')
-            var arr5 = this.choose_nextfieldx(5,'minus')
             var arr6 = this.choose_nextfieldx(6,'minus')
 
             if(arr1.length > 0){
@@ -234,9 +231,6 @@ module.exports = class Rocket extends LivingCreature{
             }
             else if(arr4.length > 0){
                 matrix[this.y][this.x] = 4; 
-            }
-            else if(arr5.length > 0){
-                matrix[this.y][this.x] = 5; 
             }
             else if(arr6.length > 0){
                 matrix[this.y][this.x] = 6; 
@@ -252,7 +246,6 @@ module.exports = class Rocket extends LivingCreature{
             var arr2 = this.choose_nextfieldy(2,'plus')
             var arr3 = this.choose_nextfieldy(3,'plus')
             var arr4 = this.choose_nextfieldy(4,'plus')
-            var arr5 = this.choose_nextfieldy(5,'plus')
             var arr6 = this.choose_nextfieldy(6,'plus')
 
             if(arr1.length > 0){
@@ -266,9 +259,6 @@ module.exports = class Rocket extends LivingCreature{
             }
             else if(arr4.length > 0){
                 matrix[this.y][this.x] = 4; 
-            }
-            else if(arr5.length > 0){
-                matrix[this.y][this.x] = 5; 
             }
             else if(arr6.length > 0){
                 matrix[this.y][this.x] = 6; 
@@ -284,7 +274,6 @@ module.exports = class Rocket extends LivingCreature{
             var arr2 = this.choose_nextfieldy(2,'minus')
             var arr3 = this.choose_nextfieldy(3,'minus')
             var arr4 = this.choose_nextfieldy(4,'minus')
-            var arr5 = this.choose_nextfieldy(5,'minus')
             var arr6 = this.choose_nextfieldy(6,'minus')
 
             if(arr1.length > 0){
@@ -298,9 +287,6 @@ module.exports = class Rocket extends LivingCreature{
             }
             else if(arr4.length > 0){
                 matrix[this.y][this.x] = 4; 
-            }
-            else if(arr5.length > 0){
-                matrix[this.y][this.x] = 5; 
             }
             else if(arr6.length > 0){
                 matrix[this.y][this.x] = 6; 

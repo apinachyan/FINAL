@@ -1,0 +1,25 @@
+{
+  "name": "gameoflife-ver2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apinachyan/GameofLife-ver2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apinachyan/GameofLife-ver2/issues"
+  },
+  "homepage": "https://github.com/apinachyan/GameofLife-ver2#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.18",
+    "socket.io": "^4.5.1"
+  }
+}
