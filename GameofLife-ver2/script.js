@@ -61,6 +61,9 @@ function setup() {
             else if (matrix[y][x] == 7) {
                 fill(0,0,255);
             }
+            else if (matrix[y][x] == 8) {
+                fill(252, 177, 3);
+            }
             rect(x * side, y * side, side, side);
         }
     }
@@ -93,7 +96,9 @@ function call_wild_an(){
 function call_airplane(){
     socket.emit('call airplane');
 }
-
+function call_rocket(){
+    socket.emit('call rocket');
+}
 function get_grass_length(data){
     grassData = data;
     pobject = document.querySelector('#grasslength');

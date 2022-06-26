@@ -3,6 +3,8 @@ var Grass = require("./grass.js");
 module.exports = class GameObject {
     constructor(len,hgt){
         this.directions = [];
+        this.len = len;
+        this.hgt = hgt;
         for (var i = 0;i < len;i++){
             for (var j = 0;j < hgt;j++){
                 this.directions.push([i,j]);
@@ -49,7 +51,6 @@ module.exports = class GameObject {
         for(var i = 0; i < this.len;i++){
             for (var j = 0;j < this.hgt;j++){
                 var grass_object = new Grass(j,i);
-                grassArr.push(grass_object);
             }
         }
     }

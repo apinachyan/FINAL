@@ -4,11 +4,13 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
       <script src="script.js"></script>
       <style>
+         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
          body{
             display:flex;
             flex-direction: column;
             align-items:center;
             justify-content:space-around;
+            font-family: 'Roboto', sans-serif;
          }
          canvas{
             display:block;
@@ -29,12 +31,91 @@
          .row button{
             margin:0 10px 0 10px;
          }
+         .cube_grass{
+            width:40px;
+            height:40px;
+            border:1px solid black;
+            background-color:green;
+            margin-right:10px;
+         }
+         .cube_wild{
+            width:40px;
+            height:40px;
+            border:1px solid black;
+            background-color:red;
+            margin-right:10px;
+         }
+         .cube_airplane{
+            width:40px;
+            height:40px;
+            border:1px solid black;
+            background-color:gray;
+            margin-right:10px;
+         }
+         .cube_human{
+            width:40px;
+            height:40px;
+            border:1px solid black;
+            background-color:pink;
+            margin-right:10px;
+         }
+         .cube_grasseater{
+            width:40px;
+            height:40px;
+            border:1px solid black;
+            background-color:yellow;
+            margin-right:10px;
+         }
+         .small{
+            display:flex;
+            align-items:center;
+            border-top:1px solid gray;
+            border-bottom:1px solid gray;
+            padding:5px;
+         }
+         button{
+            height:40px;
+            width:150px;
+            background-color:gold;
+            color:black;
+            font-family: 'Roboto', sans-serif;
+            border: 0px;
+         }
       </style>
    </head>
    <body>
       <h1>Game of life</h1>
+      <h1>Creator: Arsen Pinachyan</h1>
+      <div class="container">
+         <h2>About charcters</h2>
+         <h3>Grass</h3>
+         <div class="small">
+            <div class="cube_grass"></div>
+            <p>This is Grass. It can multiply and can be eaten by GrassEater. It changes his color depends on weather</p>
+         </div>
+         <h3>GrassEater</h3>
+         <div class="small">
+            <div class="cube_grasseater"></div>
+            <p>This is GrassEater. It can multiply, eat grasses and be eaten by Wild Animal or Human and die if it has no energy.<br>His vision gets worse when it is winter.</p>
+         </div>
+         <h3>Wild Animal</h3>
+         <div class="small">
+            <div class="cube_wild"></div>
+            <p>This is Wild Animal. It can multiply, eat grasses, grassEaters and humans and die if it has no energy.<br>The speed of multiplication can be changed. It depends on weather</p>
+         </div>
+         <h3>Human</h3>
+         <div class="small">
+            <div class="cube_human"></div>
+            <p>This is Human. It can multiply, eat grassEaters and die if it has no energy.<br>The speed of multiplication can be changed. It depends on weather</p>
+         </div>
+         <h3>Airplane</h3>
+         <div class="small">
+            <div class="cube_airplane"></div>
+            <p>This is Airplane. It flies and explodes some area by throwing Bomb.<br>When Bomb explodes it kills everything around the place where bomb was thrown.</p>
+         </div>
+      </div>
       <h3>Weather:</h3>
-      <h4 id = 'weather'></h4>
+      <h2 id = 'weather'></h2>
       <div class="row">
          <button onclick="call_water()">Water flows</button>
          <button onclick="restart_gam()">Restart</button>
@@ -42,6 +123,7 @@
          <button onclick="call_human()">Add Human</button>
          <button onclick="call_wild_an()">Add Wild Animal</button>
          <button onclick="call_airplane()">Add Airplane</button>
+         <button onclick="call_rocket()">Call Rocket!</button>
       </div>
       <div class="stats">
          <p id = "grasslength">Grass Length:</p>

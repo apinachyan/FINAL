@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
 });
 server.listen(3000);
 
- matrix = [];
+matrix = [];
 
 for (let y = 0; y < 14; y++){
    matrix[y] = [];
@@ -33,6 +33,7 @@ io.sockets.emit('send matrix', matrix);
  PlaneArr = [];
  waterArr = [];
  bombArr = [];
+ rocketArr = [];
 
 Grass = require("./grass")
 GrassEater = require("./grassEater")
@@ -40,6 +41,7 @@ WildAnimal = require("./wildAnimal")
 Airplane = require("./airplane")
 Human = require("./human")
 Water  = require("./water")
+Rocket = require("./rocket")
 GameObject = require("./check_game");
 
 function createObjects(){
@@ -76,9 +78,9 @@ function callWater(){
 io.sockets.emit('send matrix', matrix)
 
 function restart_the_game(){
-    var r = new GameObject(14,14);
+    var r = new GameObject(matrix.length,matrix[0].length);
     r.restart_game();
-    // createObjects(matrix);
+    createObjects(matrix);
 }
 
 function add_grass_eater(){
@@ -143,6 +145,10 @@ function add_airplane(){
     }
     var new_plane = new Airplane(rand_y);
 }
+function add_rocket(){
+    var rocket_obj = new Rocket();
+    console.log("ROCKET ACTIVATED");
+}
 function game(){
     for (var i in grassArr){
         grassArr[i].mul();
@@ -165,26 +171,25 @@ function game(){
     if (waterArr.length > 0){
         waterArr[0].starting();
     }
-    
-    // var stats = {
-    //     grasslength :grassArr.length,
-    //     wildLength : WildAnimalArr.length,
-
-    // }
-
+    if(rocketArr.length > 0){
+        for (var i in rocketArr){
+            rocketArr[i].starting();
+        }
+    }
     io.sockets.emit("send matrix", matrix);
 }
 
 setInterval(game, 1000);
 
 io.on('connection', function (socket) {
-    // createObjects(matrix);
+    restart_the_game();
     socket.on('call_water',callWater);
     socket.on('restart',restart_the_game);
     socket.on('call human',add_human);
     socket.on('call animal',add_animal);
     socket.on('call airplane',add_airplane);
     socket.on('call grassEater',add_grass_eater);
+    socket.on('call rocket',add_rocket);
 });
 
 function stats(){

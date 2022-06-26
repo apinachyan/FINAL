@@ -7,6 +7,7 @@ module.exports = class Human extends LivingCreature{
         this.energy = 14;
         matrix[y][x] = 6;
         HumanArr.push(this);
+        this.pos = HumanArr.length - 1;
     }
     getNewCoordinates(){
         this.directions = [

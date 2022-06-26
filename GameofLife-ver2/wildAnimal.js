@@ -7,6 +7,7 @@ module.exports = class WildAnimal extends LivingCreature{
         this.directions = [];
         matrix[y][x] = 3;
         WildAnimalArr.push(this);
+        this.pos = WildAnimalArr.length - 1;
     }
     getNewCoordinates(){
         this.directions = [
